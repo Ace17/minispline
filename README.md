@@ -5,7 +5,7 @@ Author: Sebastien Alaiwan
 A tiny standalone spline computing function,
 and a SDL demo app to test it.
 
-<p align="center"><img src="screenshot.gif" width="50%"></p>
+<p align="center"><img src="screenshot.gif" width="400%"></p>
 
 To run the demo, simply launch:
 ```
