@@ -311,28 +311,31 @@ int main()
 
     SDL_Event event;
     SDL_WaitEvent(&event);
-    switch(event.type)
+    do
     {
-    case SDL_MOUSEBUTTONDOWN:
-      onClick(event.button.x, event.button.y);
-      break;
-    case SDL_MOUSEBUTTONUP:
-      onRelease();
-      break;
-    case SDL_MOUSEMOTION:
-      onMove(event.motion.x, event.motion.y);
-      break;
-    case SDL_KEYDOWN:
-      onKeyDown(event.key.keysym.sym, (event.key.keysym.mod & KMOD_LSHIFT) || (event.key.keysym.mod & KMOD_RSHIFT));
+      switch(event.type)
+      {
+      case SDL_MOUSEBUTTONDOWN:
+        onClick(event.button.x, event.button.y);
+        break;
+      case SDL_MOUSEBUTTONUP:
+        onRelease();
+        break;
+      case SDL_MOUSEMOTION:
+        onMove(event.motion.x, event.motion.y);
+        break;
+      case SDL_KEYDOWN:
+        onKeyDown(event.key.keysym.sym, (event.key.keysym.mod & KMOD_LSHIFT) || (event.key.keysym.mod & KMOD_RSHIFT));
 
-      if(event.key.keysym.sym == SDLK_ESCAPE)
+        if(event.key.keysym.sym == SDLK_ESCAPE)
+          quit = true;
+
+        break;
+      case SDL_QUIT:
         quit = true;
-
-      break;
-    case SDL_QUIT:
-      quit = true;
-      break;
-    }
+        break;
+      }
+    } while(SDL_PollEvent(&event));
   }
 
   SDL_Quit();
